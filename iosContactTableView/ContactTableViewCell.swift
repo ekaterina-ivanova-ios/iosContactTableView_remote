@@ -14,6 +14,7 @@ class ContactTableViewCell: UITableViewCell {
             guard let contactItem = contact else {return}
             if let name = contactItem.name {
                 profileImageView.image = UIImage(named: name)
+                nameLabel.text = name
             }
             if let jobTitle = contactItem.jobTitle {
                 jobTitleDetailedLabel.text = " \(jobTitle) "
