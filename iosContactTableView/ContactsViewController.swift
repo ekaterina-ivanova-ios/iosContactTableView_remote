@@ -5,7 +5,6 @@
 //  Created by Екатерина Иванова on 16.08.2022.
 //
 
-import Foundation
 import UIKit
 
 class ContactsViewController: UIViewController {
@@ -18,6 +17,8 @@ class ContactsViewController: UIViewController {
     //setting view
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .white
+        
         view.addSubview(contactsTableView)
         
         //setting table
@@ -30,21 +31,28 @@ class ContactsViewController: UIViewController {
         contactsTableView.delegate = self
         contactsTableView.dataSource = self
         
+        contactsTableView.register(ContactTableViewCell.self, forCellReuseIdentifier: "contactCell")
+        navigationItem.title = "Contacts"
+     
+        
     }
 }
  
 
 extension ContactsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        contacts.count
+        return contacts.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "contactCell", for: indexPath)
-        cell.textLabel?.text = contacts[indexPath.row].name
+        let cell = tableView.dequeueReusableCell(withIdentifier: "contactCell", for: indexPath) as! ContactTableViewCell
+        cell.contact = contacts[indexPath.row]
         
         return cell
     }
     
-        
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
+    }
+    
 }
