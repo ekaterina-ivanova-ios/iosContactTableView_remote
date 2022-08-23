@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ContactsViewController: UIViewController {
+final class ContactsViewController: UIViewController {
     
     //create array with contacts
     private let contacts = ContactAPI.getContacts()

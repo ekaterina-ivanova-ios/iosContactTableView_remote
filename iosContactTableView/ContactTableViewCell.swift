@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ContactTableViewCell: UITableViewCell {
+final class ContactTableViewCell: UITableViewCell {
     
     var contact: Contact? {
         didSet {
@@ -25,7 +25,7 @@ class ContactTableViewCell: UITableViewCell {
         }
     }
     
-    let profileImageView: UIImageView = {
+    private let profileImageView: UIImageView = {
         let img = UIImageView()
         img.contentMode = .scaleAspectFill
         img.translatesAutoresizingMaskIntoConstraints = false
@@ -34,7 +34,7 @@ class ContactTableViewCell: UITableViewCell {
         return img
     }()
     
-    let nameLabel: UILabel = {
+    private let nameLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 20)
         label.textColor = .black
@@ -42,7 +42,7 @@ class ContactTableViewCell: UITableViewCell {
         return label
     }()
     
-    let jobTitleDetailedLabel: UILabel = {
+    private let jobTitleDetailedLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 14)
         label.textColor =  .white
@@ -54,14 +54,14 @@ class ContactTableViewCell: UITableViewCell {
         
     }()
     
-    let containerView: UIView = {
+    private let containerView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.clipsToBounds = true
         return view
     }()
     
-    let countryImageView:UIImageView = {
+    private let countryImageView:UIImageView = {
         let img = UIImageView()
         img.contentMode = .scaleAspectFill
         img.translatesAutoresizingMaskIntoConstraints = false
@@ -79,6 +79,15 @@ class ContactTableViewCell: UITableViewCell {
         self.contentView.addSubview(containerView)
         self.contentView.addSubview(countryImageView)
         
+        settingCell()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        
+        super.init(coder: aDecoder)
+    }
+    
+    private func settingCell() {
         //настройка аватарки
         profileImageView.centerYAnchor.constraint(equalTo:self.contentView.centerYAnchor).isActive = true
         profileImageView.leadingAnchor.constraint(equalTo:self.contentView.leadingAnchor, constant:10).isActive = true
@@ -107,11 +116,6 @@ class ContactTableViewCell: UITableViewCell {
         countryImageView.heightAnchor.constraint(equalToConstant:26).isActive = true
         countryImageView.trailingAnchor.constraint(equalTo:self.contentView.trailingAnchor, constant:-20).isActive = true
         countryImageView.centerYAnchor.constraint(equalTo:self.contentView.centerYAnchor).isActive = true
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        
-        super.init(coder: aDecoder)
     }
 }
 

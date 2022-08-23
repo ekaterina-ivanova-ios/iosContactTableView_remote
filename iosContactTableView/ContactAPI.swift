@@ -7,7 +7,7 @@
 
 import Foundation
 
-class ContactAPI {
+struct ContactAPI {
     static func getContacts() -> [Contact] {
         let contacts = [
             Contact(name: "Kelly Goodwin", jobTitle: "Designer", country: "bo"),
